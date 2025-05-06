@@ -1,15 +1,15 @@
 import React from 'react'
 
 // images
-import Student from '../assets/images/student.png'
-import Button from "../assets/images/Button.png"
-import Card1 from "../assets/images/card1.png"
-import Navbar from '../components/Navbar';
-import TeamCarousel from '../components/Carousel';
-import DoubleCarousel from '../components/DoubleCarousel';
-import StudenSayCarousel from '../components/StudentSayCarousel';
-import FAQ from '../components/Faq';
-import Footer from '../components/Footer';
+import Student from '../../assets/images/student.png'
+import Button from "../../assets/images/Button.png"
+import Card1 from "../../assets/images/card1.png"
+import TeamCarousel from './Carousel';
+import DoubleCarousel from './DoubleCarousel';
+import MediaCarousel from './MediaCarousel';
+import StudenSayCarousel from './StudentSayCarousel';
+import FAQ from './Faq';
+import Consultation from './Consultation';
 
 export default function Home() {
   const services = [
@@ -59,9 +59,8 @@ export default function Home() {
   ];
   return (
     <>
-      <Navbar />
       {/* Main */}
-      <main className="bg-[#009688] min-h-screen flex items-center justify-center">
+      <main className="bg-[#009688] py-3 flex items-center justify-center" style={{height:"calc(100vh - 55px)"}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex flex-col md:flex-row items-center">
 
           {/* Left Side - Text */}
@@ -84,7 +83,7 @@ export default function Home() {
             <img
               src={Student}
               alt="Student"
-              className="w-full max-w-sm md:max-w-md lg:max-w-lg"
+              className="w-[420px] "
             />
           </div>
 
@@ -136,9 +135,10 @@ export default function Home() {
       </section>
       <TeamCarousel />
       <DoubleCarousel />
+      <MediaCarousel />
       <StudenSayCarousel />
       <FAQ />
-      <Footer />
+      <Consultation />
       
     </>
   )

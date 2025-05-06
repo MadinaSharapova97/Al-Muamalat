@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 
-import cardImg from '../assets/images/expert.png'
-import media from '../assets/images/media.png';
+import cardImg from '../../assets/images/expert.png';
+import media from '../../assets/images/media.png';
 
 
 

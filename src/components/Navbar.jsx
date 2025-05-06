@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
-  const [programsOpen, setProgramsOpen] = useState(false);
-
 
   const countries = [
     {
@@ -19,23 +16,18 @@ export default function Navbar() {
       name: 'US',
       code: 'us',
       flag: 'https://flagcdn.com/w40/us.png',
-    },
-    {
-      name: 'Ru',
-      code: 'ru',
-      flag: 'https://flagcdn.com/w40/ru.png',
-    },
+    }
   ];
 
   const programs = [
     {
-      name:"International educational programs"
+      name: "International educational programs"
     },
     {
-      name:"Specialized courses"
+      name: "Specialized courses"
     },
     {
-      name:"Certification program"
+      name: "Certification program"
     },
   ]
 
@@ -45,10 +37,8 @@ export default function Navbar() {
 
   return (
 
-
-
-    <nav className="relative w-full bg-white shadow fixed top-0 left-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <nav className="relative w-full bg-white shadow-md">
+      <div className="max-w-7xl  mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <img src={Logo} alt="Logo" className="h-8 w-8" />
@@ -56,11 +46,15 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10">
-          <a href="#" className="text-[#8f8f8f] hover:text-[#009688]">Home</a>
+        <div className="hidden md:flex items-center gap-[70px]">
+          <ul className='flex items-center gap-10'>
 
-             {/* Programs */}
-             <div className='flex items-center justify-center gap-8'>
+            <li>
+              <Link to="/almuamalat/home" className="text-[#8f8f8f] hover:text-[#009688]">Home</Link>
+            </li>
+            <li>
+              {/* Programs */}
+              <Link to='/almuamalat/programs' className='flex items-center justify-center gap-8'>
                 <div className="relative w-full">
                   <button
                     className="w-full flex items-center gap-2"
@@ -85,50 +79,57 @@ export default function Navbar() {
                     </ul>
                   )}
                 </div>
-              </div>
+              </Link>
+            </li>
+            <li>
+              <Link to="/almuamalat/finance" className="text-[#8f8f8f] hover:text-[#009688]">Finance Tools</Link>
+            </li>
+            <li>
+              <Link to="/almuamalat/contact" className="text-[#8f8f8f] hover:text-[#009688]">Contact</Link>
+            </li>
+          </ul>
 
-          <a href="#" className="text-[#8f8f8f] hover:text-[#009688]">Finance Tools</a>
-          <a href="#" className="text-[#8f8f8f] hover:text-[#009688]">Contact</a>
-          {/* Right - Language & Sign In */}
-          <div className=" md:flex items-center gap-8 relative">
+        </div>
 
-            {/* Language Dropdown with flags */}
+        {/* Right - Language & Sign In */}
+        <div className=" md:flex items-center gap-8 relative">
 
-            <div className='flex items-center justify-center gap-8'>
-              <div className="relative w-full">
-                <button
-                  className="w-full flex items-center gap-2"
-                  onClick={() => setOpen(!open)}
-                >
-                  <div className="flex items-center gap-2">
-                    <img src={selected.flag} alt={selected.name} className="w-7 h-5" />
-                    <span className="text-[#8f8f8f]">{selected.name}</span>
-                  </div>
-                  <ChevronDown className="w-4 h-4 text-gray-500" />
-                </button>
+          {/* Language Dropdown with flags */}
 
-                {open && (
-                  <ul className="absolute mt-1 w-full bg-white rounded-md shadow-lg z-10 p-2">
-                    {countries.map((country) => (
-                      <li
-                        key={country.code}
-                        onClick={() => {
-                          setSelected(country);
-                          setOpen(false);
-                        }}
-                        className="flex items-center gap-2 cursor-pointer mt-2 hover:bg-gray-100"
-                      >
-                        <img src={country.flag} alt={country.name} className="w-7 h-5" />
-                        <span className='text=[#8f8f8f]'>{country.name}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-              <button className='w-[120px] p-2 text-white font-semibold rounded-md  bg-[#009688] hover:bg-[#025e55]' >Sign In</button>
+          <div className='flex items-center justify-center gap-8'>
+            <div className="relative w-full">
+              <button
+                className="w-full flex items-center gap-2"
+                onClick={() => setOpen(!open)}
+              >
+                <div className="flex items-center gap-2">
+                  <img src={selected.flag} alt={selected.name} className="w-7 h-5" />
+                  <span className="text-[#8f8f8f]">{selected.name}</span>
+                </div>
+                <ChevronDown className="w-4 h-4 text-gray-500" />
+              </button>
+
+              {open && (
+                <ul className="absolute mt-1 w-full bg-white rounded-md shadow-lg z-10 p-2">
+                  {countries.map((country) => (
+                    <li
+                      key={country.code}
+                      onClick={() => {
+                        setSelected(country);
+                        setOpen(false);
+                      }}
+                      className="flex items-center gap-2 cursor-pointer mt-2 hover:bg-gray-100"
+                    >
+                      <img src={country.flag} alt={country.name} className="w-7 h-5" />
+                      <span className='text=[#8f8f8f]'>{country.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
-
           </div>
+
+          <button className='w-[120px] p-2 text-white font-semibold rounded-md  bg-[#009688] hover:bg-[#025e55]' >Sign In</button>
         </div>
 
 
@@ -142,11 +143,11 @@ export default function Navbar() {
           {/* Mobile Menu */}
           {menuOpen && (
             <div className="absolute top-[50px] left-0 w-full flex flex-col items-center justify-center  md:hidden bg-white px-4 pt-4 pb-6 space-y-3">
-              <a href="#" className="block text-[#8f8f8f]">Home</a>
+              <Link to="almuamalat/home" className="block text-[#8f8f8f]">Home</Link>
 
 
               {/* Programs */}
-              <div className='flex items-center justify-center gap-8'>
+              <Link to='almuamalat/programs' className='flex items-center justify-center gap-8'>
                 <div className="relative w-full">
                   <button
                     className="w-full flex items-center gap-2"
@@ -171,13 +172,13 @@ export default function Navbar() {
                     </ul>
                   )}
                 </div>
-              </div>
+              </Link>
 
 
 
 
-              <a href="#" className="block text-[#8f8f8f]">Finance Tools</a>
-              <a href="#" className="block text-[#8f8f8f]">Contact</a>
+              <Link to="/almuamalat/finance" className="block text-[#8f8f8f]">Finance Tools</Link>
+              <Link to="/almuamalat/contact" className="block text-[#8f8f8f]">Contact</Link>
 
               {/* Language selector */}
               <div className='flex items-center justify-center gap-8'>
@@ -213,9 +214,9 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <button className="w-full mt-2 bg-[#009688] text-white px-4 py-2 rounded-md">
-                Sign In
-              </button>
+              <Link to='register' className="w-full mt-2 bg-[#009688] text-white px-4 py-2 rounded-md">
+               Sign In
+              </Link>
             </div>
           )}
         </div>
