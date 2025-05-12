@@ -92,7 +92,7 @@ export default function Navbar() {
         </div>
 
         {/* Right - Language & Sign In */}
-        <div className=" md:flex items-center gap-8 relative">
+        <div className="hidden md:flex items-center gap-8 relative">
 
           {/* Language Dropdown with flags */}
 

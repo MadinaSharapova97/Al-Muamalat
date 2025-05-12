@@ -1,8 +1,8 @@
-// components/EmblaCarousel.jsx
+
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-import student from "../../assets/images/student2.png";
+import student from "../../../assets/images/student2.png";
 
 const EmblaCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });

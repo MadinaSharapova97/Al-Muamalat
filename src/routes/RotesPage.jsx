@@ -1,9 +1,9 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 import Home from '../pages/home/Home'
-import Programs from '../pages/Programs'
+import Programs from '../pages/programs/Programs'
 import Layout from '../layout/Layout'
 
 export default function RoutesPage() {
@@ -16,11 +16,12 @@ export default function RoutesPage() {
       </Route>
 
       {/* Oddiy sahifalar */}
+
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
 
       {/* Not found sahifasi */}
-      <Route path='*' element={<h1 className='text-4xl text-center'>404 Not Found</h1>} />
+      <Route path='*' element={<Navigate to="/login"/>} />
     </Routes>
   )
 }

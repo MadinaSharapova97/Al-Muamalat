@@ -4,9 +4,9 @@ import { FaPlay, FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 // images import
 
-import slide1 from "../../assets/images/media1.png"
-import slide2 from "../../assets/images/media2.png"
-import slide3 from "../../assets/images/media3.png"
+import slide1 from "../../../assets/images/media1.png"
+import slide2 from "../../../assets/images/media2.png"
+import slide3 from "../../../assets/images/media3.png"
 
 const slides = [
     { text: "Why Islamic finance?", image: slide1, video: "https://www.youtube.com/embed/r7GKIFHTBTA" },

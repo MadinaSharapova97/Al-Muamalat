@@ -1,39 +1,31 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react'; // Icon uchun
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
+import axios from 'axios';
+
 // images
 import Logo from "../assets/images/Logo.png"
 import RegisterImg from "../assets/images/Register.png"
 import User from "../assets/images/user.png"
 
-import { Link } from 'react-router-dom'
-
-const countries = [
-  {
-    name: 'Uzbekistan',
-    code: 'uz',
-    flag: 'https://flagcdn.com/w40/uz.png',
-  },
-  {
-    name: 'United States',
-    code: 'us',
-    flag: 'https://flagcdn.com/w40/us.png',
-  },
-  {
-    name: 'United Kingdom',
-    code: 'gb',
-    flag: 'https://flagcdn.com/w40/gb.png',
-  },
-  {
-    name: 'Turkey',
-    code: 'tr',
-    flag: 'https://flagcdn.com/w40/tr.png',
-  },
-];
-
-
 export default function Register() {
-  const [selected, setSelected] = useState(countries[0]);
-  const [open, setOpen] = useState(false);
+
+  const { mutate, isLoading, error } = useMutation({
+    mutationFn: (submitData) => {
+      return axios.post('https://api.al-muamalat.uz/api/auth/signup', submitData)
+      .then((response) => {
+        console.log(response?.data);
+      })
+    }
+  })
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    // console.log(data)
+    mutate(data)
+  }
+
   return (
     <>
       <div className="flex h-screen p-4">
@@ -55,57 +47,32 @@ export default function Register() {
             <p className='text-[#8f8f8f]'>Already have an account?</p>
             <Link to='/login' className='text-[#009688] hover:text-[#08e09f]'>Sign In</Link>
           </div>
-          <div className='w-5/6 h-[220px] flex flex-col justify-between items-center'>
+          <form onSubmit={handleSubmit(onSubmit)} className='w-5/6 h-[220px] flex flex-col justify-between items-center'>
             <input
-              type="email"
+              {...register("full_name")}
               placeholder="Enter your name"
               className="w-full p-3 mb-4 border rounded-md shadow-sm"
             />
             {/* Email and Password Input */}
             <input
-              type="password"
+              {...register("password")}
               placeholder="Enter your name password"
               className="w-full  p-3 mb-6 border rounded-md shadow-sm"
             />
 
-            {/* Country */}
+            {/* Phone Number */}
 
-            <div className="relative w-full mb-6">
-              <button
-                className="w-full flex items-center justify-between border border-gray-300 rounded-md px-3 py-2 bg-white shadow-sm"
-                onClick={() => setOpen(!open)}
-              >
-                <div className="flex items-center gap-2">
-                  <img src={selected.flag} alt={selected.name} className="w-7 h-5" />
-                  <span className="text-[#8f8f8f]">{selected.name}</span>
-                </div>
-                <ChevronDown className="w-4 h-4 text-gray-500" />
-              </button>
-
-              {open && (
-                <ul className="absolute mt-1 w-full bg-white border border-[#8f8f8f] rounded-md shadow-lg z-10">
-                  {countries.map((country) => (
-                    <li
-                      key={country.code}
-                      onClick={() => {
-                        setSelected(country);
-                        setOpen(false);
-                      }}
-                      className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-100"
-                    >
-                      <img src={country.flag} alt={country.name} className="w-5 h-5 rounded-full" />
-                      <span className='text=[#8f8f8f]'>{country.name}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
+            <input
+              {...register("phone_number")}
+              placeholder="Phone number"
+              className="w-full  p-3 mb-6 border rounded-md shadow-sm"
+            />
 
             {/* Sign In Button */}
             <button className="w-full  p-3 bg-[#009688] text-white rounded-md hover:bg-[#08e09f]">
               Sign In
             </button>
-          </div>
+          </form>
         </div>
 
 

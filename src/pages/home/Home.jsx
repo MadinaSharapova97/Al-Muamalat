@@ -4,12 +4,14 @@ import React from 'react'
 import Student from '../../assets/images/student.png'
 import Button from "../../assets/images/Button.png"
 import Card1 from "../../assets/images/card1.png"
-import TeamCarousel from './Carousel';
-import DoubleCarousel from './DoubleCarousel';
-import MediaCarousel from './MediaCarousel';
-import StudenSayCarousel from './StudentSayCarousel';
-import FAQ from './Faq';
-import Consultation from './Consultation';
+
+//  sections
+import TeamCarousel from './sections/Carousel';
+import DoubleCarousel from './sections/DoubleCarousel';
+import MediaCarousel from './sections/MediaCarousel';
+import StudenSayCarousel from './sections/StudentSayCarousel';
+import FAQ from './sections/Faq';
+import Consultation from './sections/Consultation';
 
 export default function Home() {
   const services = [
