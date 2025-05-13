@@ -50,11 +50,11 @@ export default function Navbar() {
           <ul className='flex items-center gap-10'>
 
             <li>
-              <Link to="/almuamalat/home" className="text-[#8f8f8f] hover:text-[#009688]">Home</Link>
+              <Link to="'home" className="text-[#8f8f8f] hover:text-[#009688]">Home</Link>
             </li>
             <li>
               {/* Programs */}
-              <Link to='/almuamalat/programs' className='flex items-center justify-center gap-8'>
+              <Link to='programs' className='flex items-center justify-center gap-8'>
                 <div className="relative w-full">
                   <button
                     className="w-full flex items-center gap-2"
@@ -82,10 +82,10 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link to="/almuamalat/finance" className="text-[#8f8f8f] hover:text-[#009688]">Finance Tools</Link>
+              <Link to="finance" className="text-[#8f8f8f] hover:text-[#009688]">Finance Tools</Link>
             </li>
             <li>
-              <Link to="/almuamalat/contact" className="text-[#8f8f8f] hover:text-[#009688]">Contact</Link>
+              <Link to="'contact" className="text-[#8f8f8f] hover:text-[#009688]">Contact</Link>
             </li>
           </ul>
 
@@ -129,7 +129,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <button className='w-[120px] p-2 text-white font-semibold rounded-md  bg-[#009688] hover:bg-[#025e55]' >Sign In</button>
+          <Link to='register' className='w-[120px] p-2 text-center text-white font-semibold rounded-md  bg-[#009688] hover:bg-[#025e55]' >Sign Up</Link>
         </div>
 
 
@@ -143,11 +143,11 @@ export default function Navbar() {
           {/* Mobile Menu */}
           {menuOpen && (
             <div className="absolute top-[50px] left-0 w-full flex flex-col items-center justify-center  md:hidden bg-white px-4 pt-4 pb-6 space-y-3">
-              <Link to="almuamalat/home" className="block text-[#8f8f8f]">Home</Link>
+              <Link to="home" className="block text-[#8f8f8f]">Home</Link>
 
 
               {/* Programs */}
-              <Link to='almuamalat/programs' className='flex items-center justify-center gap-8'>
+              <Link to='programs' className='flex items-center justify-center gap-8'>
                 <div className="relative w-full">
                   <button
                     className="w-full flex items-center gap-2"
@@ -177,8 +177,8 @@ export default function Navbar() {
 
 
 
-              <Link to="/almuamalat/finance" className="block text-[#8f8f8f]">Finance Tools</Link>
-              <Link to="/almuamalat/contact" className="block text-[#8f8f8f]">Contact</Link>
+              <Link to="finance" className="block text-[#8f8f8f]">Finance Tools</Link>
+              <Link to="contact" className="block text-[#8f8f8f]">Contact</Link>
 
               {/* Language selector */}
               <div className='flex items-center justify-center gap-8'>

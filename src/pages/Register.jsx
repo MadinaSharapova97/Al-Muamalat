@@ -3,28 +3,33 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
+import { useAuth } from '../context'
 
 // images
 import Logo from "../assets/images/Logo.png"
 import RegisterImg from "../assets/images/Register.png"
 import User from "../assets/images/user.png"
+import { toast } from 'react-toastify';
 
 export default function Register() {
 
-  const { mutate, isLoading, error } = useMutation({
-    mutationFn: (submitData) => {
-      return axios.post('https://api.al-muamalat.uz/api/auth/signup', submitData)
-      .then((response) => {
-        console.log(response?.data);
-      })
-    }
-  })
+  const auth = useAuth()
+
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    // console.log(data)
-    mutate(data)
+    const { full_name, password, phoneNumber } = data
+
+    auth.register({full_name, password, phoneNumber},() =>{
+      toast.success("Muvoffaqiyatli amalga oshirildi")
+    })
+
   }
+
+
+  console.log(auth);
+
+
 
   return (
     <>
@@ -47,6 +52,8 @@ export default function Register() {
             <p className='text-[#8f8f8f]'>Already have an account?</p>
             <Link to='/login' className='text-[#009688] hover:text-[#08e09f]'>Sign In</Link>
           </div>
+
+          {/* Form */}
           <form onSubmit={handleSubmit(onSubmit)} className='w-5/6 h-[220px] flex flex-col justify-between items-center'>
             <input
               {...register("full_name")}
@@ -70,7 +77,7 @@ export default function Register() {
 
             {/* Sign In Button */}
             <button className="w-full  p-3 bg-[#009688] text-white rounded-md hover:bg-[#08e09f]">
-              Sign In
+              Login
             </button>
           </form>
         </div>
