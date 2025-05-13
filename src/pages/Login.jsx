@@ -46,7 +46,7 @@ export default function Register() {
             <button className="w-full  p-3 bg-[#009688] text-white rounded-md hover:bg-[#08664a]">
               Login
             </button>
-            <Link to='/login' className='text-[#009688] hover:text-[#08e09f] mt-4'>Create a new account !</Link>
+            <Link to='/register' className='text-[#009688] hover:text-[#08e09f] mt-4'>Create a new account !</Link>
           </div>
         </div>
 

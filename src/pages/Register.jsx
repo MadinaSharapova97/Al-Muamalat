@@ -50,7 +50,7 @@ export default function Register() {
           <h2 className="text-2xl md:text-6xl mt-10 font-bold" style={{ fontFamily: "Inter" }}>Get Started</h2>
           <div className='flex items-center space-x-2 mb-10'>
             <p className='text-[#8f8f8f]'>Already have an account?</p>
-            <Link to='/login' className='text-[#009688] hover:text-[#08e09f]'>Sign In</Link>
+            <Link to='login' className='text-[#009688] hover:text-[#08e09f]'>Sign In</Link>
           </div>
 
           {/* Form */}
