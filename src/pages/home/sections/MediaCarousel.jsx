@@ -70,10 +70,11 @@ export default function IslamicCarouselGrid() {
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute bottom-0 flex items-center justify-between p-8 w-full">
-                            <h3 className="text-2xl w-[150px] font-semibold mb-3 text-white">{slide.text}</h3>
+                            <h3 className="text-2xl w-[200px] font-semibold mb-3 text-white">{slide.text}</h3>
                             <button
                                 onClick={() => openModal(slide.video)}
-                                className="bg-white text-black hover:bg-[#2198FF] hover:text-white p-3 rounded-full shadow-lg hover:scale-110 transition"
+                                className="absolute right-5 bottom-8 bg-white text-black hover:bg-[#2198FF] 
+                                 hover:text-white p-3 rounded-full shadow-lg hover:scale-110 transition"
                             >
                                 <FaPlay />
                             </button>

@@ -1,5 +1,10 @@
 import React from 'react'
-import ProgramsCarousel from './ProgramsCarousel'
+
+// sections
+
+import Services from '../home/sections/Services'
+import ProgramsCarousel from './sections/ProgramsCarousel'
+import Payment from './sections/Payment'
 
 // images
 import Tick from '../../assets/images/tick.png'
@@ -83,24 +88,27 @@ export default function Programs() {
                 <div className='max-w-6xl mx-auto flex flex-col md:flex-row gap-10 mt-10'>
                     {/* left */}
                     <div className=''>
-                        <div className='flex gap-2 relative w-[115px]'>
+                        <div className='flex gap-2 relative w-[150px]'>
                             <h3 className='text-2xl text-[#009688] font-semibold'>Videodarslar</h3>
-                            <img src={ArrowDown} alt="arrow" className='w-5 h-3 absolute top-3 -right-9' />
+                            <img src={ArrowDown} alt="arrow" className='w-5 h-3 absolute top-3 right-0' />
                         </div>
                         <p>Lessons are posted on the platform in the  form of videos, which can be viewed anytime and anywhere. Video lessons are updated.</p>
                     </div>
 
                     {/* right */}
                     <div>
-                        <div className='flex gap-2 relative w-[115px]'>
+                        <div className='flex gap-2 relative w-[150px]'>
                             <h3 className='text-2xl text-[#009688] font-semibold'>Videodarslar</h3>
-                            <img src={ArrowDown} alt="arrow" className='w-5 h-3 absolute top-3 -right-9' />
+                            <img src={ArrowDown} alt="arrow" className='w-5 h-3 absolute top-3 right-0' />
                         </div>
                         <p>Lessons are posted on the platform in the form of videos, which can be viewed anytime and anywhere. Video lessons are updated.</p>
                     </div>
                 </div>
             </section>
+
             <ProgramsCarousel />
+            <Payment />
+            <Services />
         </main>
     )
 }

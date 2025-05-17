@@ -2,10 +2,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 
-import course1 from "../../assets/images/ProgramsCourses1.png";
-import course2 from "../../assets/images/ProgramsCourses2.png";
-import course3 from "../../assets/images/ProgramsCourses3.png";
-import star from "../../assets/images/star.png";
+import course1 from "../../../assets/images/ProgramsCourses1.png";
+import course2 from "../../../assets/images/ProgramsCourses2.png";
+import course3 from "../../../assets/images/ProgramsCourses3.png";
+import star from "../../../assets/images/star.png";
 
 const EmblaCarousel = () => {
 
@@ -47,7 +47,7 @@ const EmblaCarousel = () => {
             </p>
 
             {/* Embla slider container */}
-            <div className="overflow-hidden w-full" ref={emblaRef}>
+            <div className="overflow-hidden w-full py-5" ref={emblaRef}>
                 <div className="flex">
                     {courses.map((item, index) => (
                         <div
@@ -55,7 +55,7 @@ const EmblaCarousel = () => {
                             key={index}
                         >
                             <div className="bg-white shadow-md rounded-lg p-3">
-                                <img src={item.img} alt="" />
+                                <img src={item.img} alt="" className="flex items-center mx-auto w-full"/>
                                 <p className="text-[#363A3D] text-xl mt-2">Various versions have evolved daf</p>
                                 <div className="flex items-center gap-3 mt-3 border-b-2 pb-4">
                                     <img src={star} alt="star" />

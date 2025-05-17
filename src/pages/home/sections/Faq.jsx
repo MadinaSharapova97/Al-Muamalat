@@ -1,69 +1,78 @@
 import React, { useState } from "react";
 
 const FAQ = () => {
-  const [activeAnswer, setActiveAnswer] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleAnswer = (index) => {
-    setActiveAnswer((prevIndex) => (prevIndex === index ? null : index));
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const questions = [
     {
-      question: "What is your return policy?",
+      question: "Will I receive lifetime access to the courses?",
       answer:
-        "Our platform includes downloadable resources such as PDFs and worksheets to help you study and teach effectively.",
+        "Yes, once you enroll in a course, you have lifetime access to its content and future updates.",
     },
     {
       question: "Can I use the materials for community teaching?",
       answer:
-        "Yes, we ship internationally. Shipping fees vary based on the destination and size of the order.",
+        "Absolutely! Our resources are designed to be shared and taught in community and group settings.",
     },
     {
       question: "How do I track my order?",
       answer:
-        "You can track your order through the tracking link sent to your email once your order is shipped.",
-    },
-    {
-      question: "Can I use the materials for community teaching?",
-      answer:
-        "We accept all major credit cards, PayPal, and Apple Pay.",
+        "You'll receive a tracking link via email once your order has been shipped.",
     },
     {
       question: "Is there a free trial for the courses?",
       answer:
-        "You can reach us through our contact form or by calling our customer service number listed on the contact page.",
+        "Yes, many of our courses offer a free preview or trial period to help you decide.",
     },
     {
       question: "Who can benefit from these courses?",
       answer:
-        "Unfortunately, once an order is placed, it cannot be changed. However, you can cancel your order within 24 hours for a full refund.",
+        "Our courses are suitable for beginners, students, educators, and lifelong learners.",
+    },
+    {
+      question: "How can I contact support?",
+      answer:
+        "You can reach our support team via email or live chat on the website anytime.",
     },
   ];
 
   return (
-    <section className="py-16 px-4">
+    <section className="py-16 px-4 ">
       <h2 className="text-4xl font-bold text-center mb-2">Frequently Asked Questions</h2>
-      <p className="text-[#8f8f8f] font-bold text-center mb-12">If you have any further questions, please contact us </p>
-      <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <p className="text-gray-500 text-center mb-12">
+        If you have any further questions, please contact us.
+      </p>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6">
         {questions.map((item, index) => (
-          <div className="border-2 relative border-gray-600 p-4 rounded-md" key={index}>
-            <div
-              className="flex justify-between items-center cursor-pointer"
+          <div
+            key={index}
+            className="bg-white border border-gray-200 rounded-lg shadow-sm transition hover:shadow-md"
+          >
+            <button
               onClick={() => toggleAnswer(index)}
+              className="w-full flex justify-between items-center p-5 text-left focus:outline-none"
             >
-              <span className="text-xl font-semibold text-gray-800">
-                {item.question}
+              <span className="text-lg font-medium text-gray-800">{item.question}</span>
+              <span
+                className={`text-2xl text-[#009688] transform transition-transform duration-300 ${
+                  activeIndex === index ? "rotate-45" : ""
+                }`}
+              >
+                +
               </span>
-              <span className="text-2xl text-gray-600">
-                {activeAnswer === index ? "−" : "+"}
-              </span>
-            </div>
+            </button>
+
+            {/* Answer block */}
             <div
-              className={`absolute left-0 top-[110%] z-10 p-5 bg-white border-2 border-[#009688] text-gray-600 rounded-md transition-all duration-500 w-full ${
-                activeAnswer === index ? "opacity-100 block" : "opacity-0 hidden"
+              className={`transition-all duration-500 overflow-hidden px-5 ${
+                activeIndex === index ? "max-h-[500px] py-4" : "max-h-0 py-0"
               }`}
             >
-              <p>{item.answer}</p>
+              <p className="text-gray-600">{item.answer}</p>
             </div>
           </div>
         ))}

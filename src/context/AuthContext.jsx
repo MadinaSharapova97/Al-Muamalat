@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createContext } from "react";
 import { Request } from "../pages/services/Request";
+import { toast } from "react-toastify";
 
 const defaultProvider = {
     loading: true,
@@ -18,9 +19,12 @@ const AuthProvider = ({ children }) => {
         Request.post("/auth/signup", submitData)
             .then((response) => {
                 console.log(response?.data?.data);
+                toast.success("Muvoffaqiyatli amalga oshirildi")
+
             })
             .catch((error) => {
                 console.log(error);
+                toast.error("Xatolik yuz berdi")
             })
             .finally(() => {
                 setLoading(true);

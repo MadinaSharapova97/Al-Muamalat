@@ -9,7 +9,6 @@ import { useAuth } from '../context'
 import Logo from "../assets/images/Logo.png"
 import RegisterImg from "../assets/images/Register.png"
 import User from "../assets/images/user.png"
-import { toast } from 'react-toastify';
 
 export default function Register() {
 
@@ -18,10 +17,9 @@ export default function Register() {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    const { full_name, password, phoneNumber } = data
+    const { full_name, password, phone_number } = data
 
-    auth.register({full_name, password, phoneNumber},() =>{
-      toast.success("Muvoffaqiyatli amalga oshirildi")
+    auth.register({full_name, password, phone_number},() =>{
     })
 
   }
@@ -47,14 +45,14 @@ export default function Register() {
               <img src={User} alt="user" className='absolute top-[70%] md:top-[-30%] md:right-[-120%]' />
             </div>
           </div>
-          <h2 className="text-2xl md:text-6xl mt-10 font-bold" style={{ fontFamily: "Inter" }}>Get Started</h2>
-          <div className='flex items-center space-x-2 mb-10'>
+          <h2 className="text-2xl md:text-6xl mt-10 font-bold text-center" style={{ fontFamily: "Inter" }}>Get Started</h2>
+          <div className='flex mx-auto justify-center items-center space-x-2 mb-10'>
             <p className='text-[#8f8f8f]'>Already have an account?</p>
-            <Link to='login' className='text-[#009688] hover:text-[#08e09f]'>Sign In</Link>
+            <Link to='/login' className='text-[#009688] hover:text-[#08e09f]'>Sign In</Link>
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className='w-5/6 h-[220px] flex flex-col justify-between items-center'>
+          <form onSubmit={handleSubmit(onSubmit)} className='w-5/6 h-[220px] flex flex-col justify-between mx-auto items-center'>
             <input
               {...register("full_name")}
               placeholder="Enter your name"
@@ -77,7 +75,7 @@ export default function Register() {
 
             {/* Sign In Button */}
             <button className="w-full  p-3 bg-[#009688] text-white rounded-md hover:bg-[#08e09f]">
-              Login
+              Log in
             </button>
           </form>
         </div>
@@ -85,7 +83,7 @@ export default function Register() {
 
 
         {/* Right Section */}
-        <div className="hidden md:flex flex-col justify-center space-y-6 rounded-lg items-center w-1/2 bg-[#009688] text-white p-8">
+        <div className="hidden md:flex flex-col justify-center space-y-6 rounded-3xl items-center w-1/2 bg-[#009688] text-white p-8">
           <img src={RegisterImg} alt="Illustration" className="mb-4 w-full max-w-sm" />
           <h2 className="text-xl md:text-4xl text-center w-full max-w-3/4" style={{ fontFamily: "Inter" }}>
             Welcome to Al Muamalat – Empowering Your Journey in Islamic Finance
