@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react'; // Icon uchun
+import React from 'react';
 
 // images
 import Logo from "../assets/images/Logo.png"
@@ -7,10 +6,24 @@ import RegisterImg from "../assets/images/Register.png"
 import User from "../assets/images/user.png"
 
 import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../context';
 
 
 
-export default function Register() {
+export default function Login() {
+
+  const auth = useAuth()
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    const { password, phone_number } = data
+
+    auth.login({ password, phone_number }, () => {
+    })
+
+  }
 
   return (
     <>
@@ -29,17 +42,19 @@ export default function Register() {
             </div>
           </div>
           <h2 className="text-2xl md:text-6xl my-10 font-bold" style={{ fontFamily: "Inter" }}>Get Started</h2>
-         
-          <div className='w-5/6 h-[220px] flex flex-col justify-between items-center'>
+
+          <form onSubmit={handleSubmit(onSubmit)} className='w-5/6 h-[220px] flex flex-col justify-between items-center'>
             <input
-              type="email"
-              placeholder="Enter your name"
+              {...register("phone_number")}
+              type="phone"
+              placeholder="Phone Number"
               className="w-full p-3 mb-4 border rounded-md shadow-sm"
             />
             {/* Email and Password Input */}
             <input
+              {...register("password")}
               type="password"
-              placeholder="Enter your name password"
+              placeholder="password"
               className="w-full  p-3 mb-6 border rounded-md shadow-sm"
             />
             {/* Sign In Button */}
@@ -47,7 +62,7 @@ export default function Register() {
               Login
             </button>
             <Link to='/register' className='text-[#009688] hover:text-[#08e09f] mt-4'>Create a new account !</Link>
-          </div>
+          </form>
         </div>
 
 

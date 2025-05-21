@@ -20,6 +20,26 @@ const AuthProvider = ({ children }) => {
             .then((response) => {
                 console.log(response?.data?.data);
                 toast.success("Muvoffaqiyatli amalga oshirildi")
+                window.localStorage.setItem("testUserToken", response?.data?.data?.tokens?.accessToken)
+
+
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error("Xatolik yuz berdi")
+            })
+            .finally(() => {
+                setLoading(true);
+            });
+    }
+
+    const handleLogin = (submitData) => {
+        setLoading(false);
+        Request.post("/auth/signin", submitData)
+            .then((response) => {
+                console.log(response?.data?.data);
+                toast.success("Muvoffaqiyatli amalga oshirildi")
+                window.localStorage.setItem("testUserToken", response?.data?.data?.tokens?.accessToken)
 
             })
             .catch((error) => {
@@ -33,7 +53,8 @@ const AuthProvider = ({ children }) => {
 
     const values = {
         loading,
-        register: handleRegister
+        register: handleRegister,
+        login: handleLogin,
     }
 
     return (

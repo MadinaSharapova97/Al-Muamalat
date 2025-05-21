@@ -1,9 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { Request } from '../services/Request'
 
 import Alexa from '../../assets/images/Alexa.png'
 
 export default function Profile() {
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['userData'],
+    queryFn: () => 
+      Request.get('https://api.al-muamalat.uz/api/users/me')
+  })
+  console.log(data);
+  
+
   return (
     <div className='py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 
@@ -27,19 +38,19 @@ export default function Profile() {
         <form className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className='flex flex-col gap-4'>
             <label htmlFor="First Name">First Name</label>
-            <input type="text" placeholder='Your First Name' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
+            <input type="text" placeholder='Your Full Name' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
           </div>
           <div className='flex flex-col gap-4'>
-            <label htmlFor="First Name">First Name</label>
-            <input type="text" placeholder='Your First Name' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
+            <label htmlFor="First Name">Phone Number</label>
+            <input type="text" placeholder='Phone Number' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
           </div>
           <div className='flex flex-col gap-4'>
-            <label htmlFor="First Name">First Name</label>
-            <input type="text" placeholder='Your First Name' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
+            <label htmlFor="First Name">Address</label>
+            <input type="text" placeholder='Your Address' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
           </div>
           <div className='flex flex-col gap-4'>
-            <label htmlFor="First Name">First Name</label>
-            <input type="text" placeholder='Your First Name' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
+            <label htmlFor="First Name">Birthday</label>
+            <input type="date" placeholder='Your First Name' className='bg-[#F9F9F9] rounded-md p-4 outline-none' />
           </div>
         </form>
 

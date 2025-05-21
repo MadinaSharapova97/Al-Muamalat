@@ -1,8 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
-import axios from 'axios';
 import { useAuth } from '../context'
 
 // images
@@ -61,7 +59,7 @@ export default function Register() {
             {/* Email and Password Input */}
             <input
               {...register("password")}
-              placeholder="Enter your name password"
+              placeholder="Password"
               className="w-full  p-3 mb-6 border rounded-md shadow-sm"
             />
 
