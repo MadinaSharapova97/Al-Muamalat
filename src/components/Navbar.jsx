@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Logo from '../assets/images/Logo.png';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+
+  const getUserToken = localStorage.getItem("testUserToken");
+  console.log(getUserToken);
+  
 
   const countries = [
     {
@@ -22,7 +25,7 @@ export default function Navbar() {
   const programs = [
     {
       name: "International educational programs",
-      link:"programs"
+      link: "programs"
     },
     {
       name: "Specialized courses"
@@ -70,8 +73,8 @@ export default function Navbar() {
 
                   {programOpen && (
                     <ul
-                    onMouseLeave={() => setProgramOpen(false)} 
-                    className="absolute mt-4 w-[260px] bg-white rounded-md shadow-lg z-10 px-3">
+                      onMouseLeave={() => setProgramOpen(false)}
+                      className="absolute mt-4 w-[260px] bg-white rounded-md shadow-lg z-10 px-3">
                       {programs.map((programs) => (
                         <li
                           key={programs.code}

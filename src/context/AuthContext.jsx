@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createContext } from "react";
 import { Request } from "../pages/services/Request";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const defaultProvider = {
     loading: true,
@@ -12,6 +13,7 @@ const defaultProvider = {
 const AuthContext = createContext(defaultProvider);
 
 const AuthProvider = ({ children }) => {
+    const navigate = useNavigate()
     const [loading, setLoading] = useState(defaultProvider?.loading);
 
     const handleRegister = (submitData) => {
@@ -40,7 +42,7 @@ const AuthProvider = ({ children }) => {
                 console.log(response?.data?.data);
                 toast.success("Muvoffaqiyatli amalga oshirildi")
                 window.localStorage.setItem("testUserToken", response?.data?.data?.tokens?.accessToken)
-
+                navigate("/profile")
             })
             .catch((error) => {
                 console.log(error);

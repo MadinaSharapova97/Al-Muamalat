@@ -2,14 +2,14 @@ import axios from "axios";
 
 const Request = axios.create({
     headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json, multipart/form-data",
     },
     baseURL: "https://api.al-muamalat.uz/api",
     params: {}
 });
 Request.interceptors.request.use(
     (response) => {
-        const token = localStorage.getItem("textUserToken")
+        const token = localStorage.getItem("testUserToken")
         if (token) {
             response.headers.Authorization = `Bearer ${token}`;
         }

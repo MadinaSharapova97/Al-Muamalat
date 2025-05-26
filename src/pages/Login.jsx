@@ -8,8 +8,7 @@ import User from "../assets/images/user.png"
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context';
-
-
+import Loading from '../components/Loading';
 
 export default function Login() {
 
@@ -24,6 +23,7 @@ export default function Login() {
     })
 
   }
+ 
 
   return (
     <>
