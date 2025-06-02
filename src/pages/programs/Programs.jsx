@@ -1,4 +1,6 @@
 import React from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { Request } from "../services/Request"
 
 // sections
 
@@ -10,13 +12,29 @@ import Payment from './sections/Payment'
 import Tick from '../../assets/images/tick.png'
 import Dot from '../../assets/images/dot.png'
 import ArrowDown from '../../assets/images/ArrowDown.png'
+import { useParams } from 'react-router-dom'
 
 export default function Programs() {
+
+    const { id } = useParams()
+
+    const { data, isloading, error } = useQuery({
+        queryKey: ['aboutCourseData'],
+        queryFn: () =>
+            Request.get('/courses/main')
+    })
+    const aboutData = data?.data?.data?.find(item => item.course_id === id)
+    console.log(aboutData);
+
     return (
         <main className='max-w-7xl mx-auto px-4 py-10'>
             <div>
-                <h1 className='text-2xl md:text-4xl text-center text-[#152032] font-semibold '>International educational programs</h1>
-                <p className='text-center text-[#686868] font-semibold mt-3'>Al Muamalat Education's international study programs <br /> offer an in-depth learning experience at leading Islamic <br /> financial institutions around the world.</p>
+                <h1 className='text-2xl md:text-4xl text-center text-[#152032] font-semibold '>{aboutData?.name_uz}</h1>
+                <p className='text-center text-[#686868] font-semibold mt-3'
+                    dangerouslySetInnerHTML={{
+                        __html: aboutData?.description_uz
+                    }}
+                />
                 <section className='flex flex-col md:flex-row gap-10 mt-10'>
                     {/* left */}
                     <div className='bg-[#F3F8FF] p-7 rounded-lg w-full'>
@@ -107,7 +125,7 @@ export default function Programs() {
             </section>
 
             <ProgramsCarousel />
-            <Payment />
+            <Payment id={id}/>
             <Services />
         </main>
     )

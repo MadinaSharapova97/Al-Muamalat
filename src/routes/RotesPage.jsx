@@ -17,14 +17,8 @@ export default function RoutesPage() {
       <Route path='/' element={<Layout />} >
         <Route index element={<Navigate to='home' replace />} />
         <Route path='home' element={<Home />} />
-        <Route path='programs' element={<Programs />} />
-        {
-          localStorage.getItem("testUserToken") ? (
-          <Route path='profile' element={<Profile />} />
-        ) : (
-          <Route path='profile' element={<Navigate to='/login' replace />} />
-        )
-        }
+        <Route path='programs/:id' element={<Programs />} />
+        <Route path='profile' element={<Profile />} />
         <Route path='courses' element={<Courses />} />
         <Route path='contact' element={<Contact />} />
       </Route>

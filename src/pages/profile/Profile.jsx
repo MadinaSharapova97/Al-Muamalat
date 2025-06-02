@@ -16,8 +16,8 @@ export default function Profile() {
 
   const { register, handleSubmit } = useForm()
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['userData'],
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: 'userData',
     queryFn: () =>
       Request.get('/users/me')
   })
@@ -26,9 +26,10 @@ export default function Profile() {
 
   const { mutate, isPending } = useMutation({
     mutationFn: (submitData) => {
-      return axios.put(`https://api.al-muamalat.uz/api/users${data?.data?.data?.user_id}`, submitData)
+      return Request.put(`https://api.al-muamalat.uz/api/users/${data?.data?.data?.user_id}`, submitData)
         .then((res) => {
           console.log(res?.data)
+          refetch()
           toast.success("Muvoffaqiyatli amalga oshirildi")
         }
         ).catch((err) => {
@@ -66,7 +67,7 @@ export default function Profile() {
       <div className='px-6 py-8 bg-white rounded-lg shadow-lg mt-8'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-8'>
-            <img src={Alexa} alt="alexa" />
+            <img src={`https://api.al-muamalat.uz/api/uploads/images/${data?.data?.data?.image_src}`} alt="Profile image" />
             <h1 className='text-3xl font-semibold'>{data?.data?.data?.full_name}</h1>
           </div>
         </div>
@@ -100,7 +101,7 @@ export default function Profile() {
             <div className='flex flex-col gap-4'>
               <label htmlFor="Avatar">Avatar</label>
               <input
-                {...register("image")}
+                {...register("images")}
                 type="file"
                 accept='image/*'
                 onChange={(e) => setImage(e.target.files[0])}

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Logo from '../assets/images/Logo.png';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { Request } from '../pages/services/Request';
 
 export default function Navbar() {
 
   const getUserToken = localStorage.getItem("testUserToken");
-  console.log(getUserToken);
   
 
   const countries = [
@@ -34,6 +35,12 @@ export default function Navbar() {
       name: "Certification program"
     },
   ]
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['courseData'],
+    queryFn: () =>
+      Request.get('/courses/main')
+  })
 
   const [selected, setSelected] = useState(countries[0]);
   const [open, setOpen] = useState(false);
@@ -75,12 +82,12 @@ export default function Navbar() {
                     <ul
                       onMouseLeave={() => setProgramOpen(false)}
                       className="absolute mt-4 w-[260px] bg-white rounded-md shadow-lg z-10 px-3">
-                      {programs.map((programs) => (
+                      {data?.data?.data?.map((programs) => (
                         <li
-                          key={programs.code}
+                          key={programs?.course_id}
                           className="w-full flex py-2 border-t-2 items-center gap-2 cursor-pointer mt-2 hover:bg-gray-100"
                         >
-                          <Link to={programs.link} className='text-[#8f8f8f]'>{programs.name}</Link>
+                          <Link to={`/programs/${programs?.course_id}`} className='text-[#8f8f8f]'>{programs.name_uz}</Link>
                         </li>
                       ))}
                     </ul>

@@ -1,11 +1,60 @@
 import React from 'react'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { Request } from '../../services/Request'
+import Loading from '../../../components/Loading'
+import { get } from 'lodash'
 
 //
 
 import tick from '../../../assets/images/tick2.png'
-import { Link } from 'react-router-dom'
 
-export default function Payment() {
+export default function Payment({ id }) {
+
+  const { data, isLoading, isPending } = useQuery({
+    queryKey: ['userData'],
+    queryFn: () =>
+      Request.get('/users/me')
+  })
+
+  const { mutate } = useMutation({
+    mutationFn: (payload) => {
+      return Request.post("/courses/user", payload)
+        .then((res) => {
+          console.log(res?.data?.data)
+          Request.get(`/courses/purchase/${res?.data?.data?.id}`)
+            .then((res) => {
+              const url = get(res, "data.data.data") // Response ichidan url ni olish
+              if (url) {
+                //Dinamik <a> tegi yaratish
+                const aTag = document.createElement('a');
+                aTag.href = url; // URL ni hrefga qo'shish 
+                aTag.target = '_blank'; // Sahifani Yangi oynada ochish 
+                aTag.rel = 'noopener noreferrer'; // Xavfsizlik uchun rel atributini qo'shish
+                document.body.appendChild(aTag); // <a> tegini DOM ga qo'shish
+                aTag.click(); // Linkni avtomatik bosish 
+
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        })
+    },
+  })
+
+
+  const onSubmit = () => {
+    const submitData = {
+      course_id: id,
+      user_id: data?.data?.data?.user_id,
+    }
+    mutate(submitData)
+  }
+
+  // if (isLoading || isPending) {
+  //   return <Loading />
+  // }
+
   return (
     <section className='max-w-7xl mx-auto my-10 flex flex-col md:flex-row' style={{ boxShadow: '0 0 20px rgba(0,0,0,0.25)' }}>
       {/* left */}
@@ -53,7 +102,7 @@ export default function Payment() {
 
       </div>
       {/* right */}
-      <div className='w-full pt-10 px-16'>
+      <div div className='w-full pt-10 px-16' >
         <h1 className='font-semibold text-4xl mt-4'>Payment </h1>
         <ul className="list-disc list-outside marker:text-[#009688] flex flex-col space-y-4 mt-10 ml-4">
           <li>Space for creative ideas</li>
@@ -65,12 +114,12 @@ export default function Payment() {
           <li>Personalized one-to-one training</li>
         </ul>
 
-        <Link
-          to='/profile'
-          className='inline-block mt-8 bg-[#009688] font-semibold text-white rounded-md py-3 px-8'
+        <button
+          onClick={onSubmit}
+          className='inline-block my-8 bg-[#009688] font-semibold text-white rounded-md py-3 px-8'
         >
           Purchase Now
-        </Link>
+        </button>
 
       </div>
     </section>
