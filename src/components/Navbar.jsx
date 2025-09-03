@@ -61,7 +61,7 @@ export default function Navbar() {
           <ul className='flex items-center gap-10'>
 
             <li>
-              <Link to="'home" className="text-[#8f8f8f] hover:text-[#009688]">Home</Link>
+              <Link to="home" className="text-[#8f8f8f] hover:text-[#009688]">Home</Link>
             </li>
             <li>
               {/* Programs */}

@@ -17,9 +17,9 @@ export default function Profile() {
   const { register, handleSubmit } = useForm()
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: 'userData',
+    queryKey: ['userData'],
     queryFn: () =>
-      Request.get('/users/me')
+      Request.get('users/me')
   })
   console.log(data);
 
